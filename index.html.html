@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunrise Experience 2026 · Sunrise School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #e5b82d;
+  --gold-light: #f2cc6a;
+  --red: #9d1e2b;
+  --red-light: #b52333;
+  --black: #0c0a0b;
+  --off-black: #171315;
+  --card-bg: #1e191b;
+  --cream: #f5efe0;
+  --cream-dark: #d9cebc;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--cream); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9998; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 22px 48px;
+  background: linear-gradient(to bottom, rgba(12,10,11,0.95), transparent);
+  backdrop-filter: blur(4px);
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 700; color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 9px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--cream-dark); text-decoration: none; opacity: 0.6; transition: opacity 0.2s; }
+.nav-links a:hover { opacity: 1; color: var(--gold); }
+.nav-cta { background: var(--gold) !important; color: var(--black) !important; opacity: 1 !important; padding: 11px 28px !important; font-weight: 700 !important; }
+.nav-cta:hover { background: white !important; }
+@media (max-width: 700px) { nav { padding: 18px 20px; } .nav-links li:not(:last-child) { display: none; } }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding: 100px 24px 80px; text-align: center;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 100% 70% at 50% -10%, rgba(157,30,43,0.6) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 15% 85%, rgba(229,184,45,0.07) 0%, transparent 55%),
+    var(--black);
+}
+.hero-vline {
+  position: absolute; top: 0; left: 50%;
+  width: 1px; height: 90px;
+  background: linear-gradient(to bottom, var(--gold), transparent); opacity: 0.5;
+  animation: vpulse 3s ease-in-out infinite;
+}
+@keyframes vpulse { 0%,100%{opacity:.3;height:70px} 50%{opacity:.7;height:110px} }
+
+.hero-eyebrow {
+  position: relative; z-index: 2;
+  font-size: 9px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); border: 1px solid rgba(229,184,45,0.35); padding: 7px 22px; margin-bottom: 40px;
+  animation: riseIn 1s ease both;
+}
+.hero-name { position: relative; z-index: 2; animation: riseIn 1s ease 0.15s both; }
+.hero-name .big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(80px, 16vw, 160px); font-weight: 700; line-height: 0.82;
+  color: var(--gold); display: block;
+  text-shadow: 0 0 100px rgba(229,184,45,0.25); letter-spacing: -3px;
+}
+.hero-name .sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(11px, 2.5vw, 18px); font-weight: 300; letter-spacing: 14px;
+  text-transform: uppercase; color: var(--cream); opacity: 0.75; display: block; margin-top: 10px;
+}
+.hero-year-row {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 28px;
+  animation: riseIn 1s ease 0.25s both;
+}
+.hero-year-row::before, .hero-year-row::after {
+  content: ''; width: 60px; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(229,184,45,0.5));
+}
+.hero-year-row::after { transform: scaleX(-1); }
+.hero-year-row span { font-family: 'Cormorant Garamond', serif; font-size: clamp(16px,3vw,26px); font-weight: 300; letter-spacing: 10px; color: var(--gold-light); }
+
+.hero-date-block { position: relative; z-index: 2; margin-top: 36px; animation: riseIn 1s ease 0.35s both; }
+.hero-date-block .big-day { font-family: 'Cormorant Garamond', serif; font-size: clamp(56px,10vw,96px); font-weight: 600; color: white; line-height: 1; }
+.hero-date-block .detail { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--cream-dark); opacity: 0.55; margin-top: 6px; }
+
+.hero-desc { position: relative; z-index: 2; max-width: 500px; font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--cream-dark); opacity: 0.75; margin-top: 32px; animation: riseIn 1s ease 0.45s both; }
+
+.hero-actions { position: relative; z-index: 2; margin-top: 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; animation: riseIn 1s ease 0.55s both; }
+.btn-gold {
+  display: inline-block; background: var(--gold); color: var(--black);
+  font-size: 10px; font-weight: 800; letter-spacing: 3.5px; text-transform: uppercase;
+  padding: 18px 56px; text-decoration: none; position: relative; overflow: hidden; transition: all 0.3s;
+}
+.btn-gold::before { content: ''; position: absolute; inset: 0; background: white; transform: translateX(-101%); transition: transform 0.3s; }
+.btn-gold:hover::before { transform: translateX(0); }
+.btn-gold span { position: relative; z-index: 1; }
+.price-note { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--cream-dark); opacity: 0.4; }
+
+.scroll-cue { position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px; animation: riseIn 1s ease 1s both; }
+.scroll-cue span { font-size: 8px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); opacity: 0.5; }
+.scroll-cue-line { width: 1px; height: 44px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollDown 2s ease-in-out infinite; }
+@keyframes scrollDown { 0%,100%{opacity:.2} 50%{opacity:.8} }
+@keyframes riseIn { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+/* UTILS */
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.sec-label { font-size: 8.5px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.sec-label::after { content: ''; width: 48px; height: 1px; background: var(--gold); opacity: 0.45; }
+.sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,6vw,62px); font-weight: 600; line-height: 1.05; margin-bottom: 20px; }
+.sec-title em { color: var(--gold); font-style: italic; }
+
+/* SOBRE */
+.sobre-sec { padding: 110px 0; border-top: 1px solid rgba(229,184,45,0.1); }
+.sobre-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; }
+@media (max-width: 800px) { .sobre-grid { grid-template-columns: 1fr; gap: 48px; } }
+.sobre-text p { font-size: 15px; font-weight: 300; line-height: 1.95; color: var(--cream-dark); opacity: 0.8; margin-bottom: 18px; }
+.sobre-text p strong { color: var(--gold); font-weight: 600; }
+.stats-stack { display: flex; flex-direction: column; gap: 2px; }
+.stat-card { background: var(--card-bg); border: 1px solid rgba(229,184,45,0.08); border-left: 3px solid var(--red); padding: 32px 36px; transition: border-color 0.3s; }
+.stat-card:hover { border-left-color: var(--gold); }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--cream-dark); opacity: 0.5; }
+
+/* PROGRAMAÇÃO */
+.prog-sec { background: var(--off-black); padding: 110px 0; border-top: 1px solid rgba(229,184,45,0.08); border-bottom: 1px solid rgba(229,184,45,0.08); }
+.timeline { margin-top: 64px; position: relative; }
+.timeline::before { content: ''; position: absolute; left: 96px; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold), rgba(229,184,45,0.05)); }
+@media (max-width: 560px) { .timeline::before { left: 48px; } }
+.tl-item { display: grid; grid-template-columns: 140px 1fr; gap: 32px; margin-bottom: 8px; align-items: start; }
+@media (max-width: 560px) { .tl-item { grid-template-columns: 72px 1fr; gap: 18px; } }
+.tl-time { text-align: right; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--gold); padding-top: 18px; position: relative; }
+.tl-time::after { content: ''; position: absolute; right: -46px; top: 26px; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 14px rgba(229,184,45,0.6); }
+@media (max-width: 560px) { .tl-time::after { right: -28px; } }
+.tl-body { background: rgba(229,184,45,0.03); border: 1px solid rgba(229,184,45,0.08); border-left: 2px solid var(--red); padding: 22px 28px; transition: all 0.3s; }
+.tl-body:hover { background: rgba(157,30,43,0.12); border-color: rgba(229,184,45,0.25); transform: translateX(6px); }
+.tl-body h3 { font-size: 14px; font-weight: 600; color: var(--cream); margin-bottom: 5px; }
+.tl-body p { font-size: 12px; font-weight: 300; color: var(--cream-dark); opacity: 0.55; line-height: 1.6; }
+
+/* PARA QUEM */
+.publico-sec { padding: 110px 0; }
+.publico-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2px; margin-top: 56px; }
+.pub-card { background: var(--card-bg); border: 1px solid rgba(229,184,45,0.07); padding: 48px 32px; position: relative; overflow: hidden; transition: all 0.35s; }
+.pub-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+.pub-card:hover::after { transform: scaleX(1); }
+.pub-card:hover { background: rgba(157,30,43,0.1); }
+.pub-icon { font-size: 30px; margin-bottom: 20px; display: block; }
+.pub-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--gold); margin-bottom: 12px; }
+.pub-card p { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--cream-dark); opacity: 0.65; }
+
+/* GALERIA */
+.galeria-sec { background: var(--off-black); padding: 110px 0; border-top: 1px solid rgba(229,184,45,0.08); }
+.galeria-tabs { display: flex; gap: 2px; margin-top: 48px; flex-wrap: wrap; }
+.gtab { background: rgba(229,184,45,0.05); border: 1px solid rgba(229,184,45,0.15); color: var(--cream-dark); font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 13px 28px; cursor: pointer; transition: all 0.2s; opacity: 0.6; }
+.gtab.active, .gtab:hover { background: var(--gold); color: var(--black); border-color: var(--gold); opacity: 1; }
+.gtab-panel { display: none; margin-top: 2px; animation: fadeSlide 0.4s ease; }
+.gtab-panel.active { display: block; }
+@keyframes fadeSlide { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+/* FOTOS GRID */
+.foto-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+@media (max-width: 700px) { .foto-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 480px) { .foto-grid { grid-template-columns: 1fr; } }
+.foto-slot {
+  aspect-ratio: 4/3; background: var(--card-bg);
+  border: 1px dashed rgba(229,184,45,0.2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s;
+}
+.foto-slot:hover { border-color: rgba(229,184,45,0.5); background: rgba(229,184,45,0.04); }
+.foto-slot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+@media (max-width: 480px) { .foto-slot:nth-child(1) { grid-column: span 1; grid-row: span 1; } }
+.foto-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s; }
+.foto-slot.has-img img { opacity: 1; }
+.foto-slot.has-img .foto-ph { opacity: 0; }
+.foto-ph { display: flex; flex-direction: column; align-items: center; gap: 8px; transition: opacity 0.3s; }
+.foto-ph-icon { font-size: 28px; opacity: 0.25; }
+.foto-ph-text { font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); opacity: 0.4; }
+.foto-num { position: absolute; bottom: 10px; right: 12px; font-family: 'Cormorant Garamond', serif; font-size: 20px; color: rgba(229,184,45,0.12); font-weight: 700; }
+
+/* CARROSSEL */
+.carr-wrap { position: relative; overflow: hidden; background: var(--black); }
+.carr-track { display: flex; transition: transform 0.5s cubic-bezier(0.77,0,0.175,1); }
+.carr-slide {
+  min-width: 100%; aspect-ratio: 16/7; background: var(--card-bg);
+  border: 1px dashed rgba(229,184,45,0.15);
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px;
+  position: relative; overflow: hidden; flex-shrink: 0;
+}
+@media (max-width: 600px) { .carr-slide { aspect-ratio: 4/3; } }
+.carr-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s; }
+.carr-slide.has-img img { opacity: 1; }
+.carr-slide.has-img .foto-ph { opacity: 0; }
+.carr-bg-num { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Cormorant Garamond', serif; font-size: 120px; font-weight: 700; color: rgba(229,184,45,0.04); pointer-events: none; }
+.carr-controls { display: flex; align-items: center; gap: 2px; padding: 14px 0 0; }
+.carr-btn { background: rgba(229,184,45,0.07); border: 1px solid rgba(229,184,45,0.2); color: var(--gold); font-size: 18px; width: 48px; height: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-family: serif; }
+.carr-btn:hover { background: var(--gold); color: var(--black); }
+.carr-dots { display: flex; gap: 6px; margin-left: 16px; }
+.carr-dot { width: 6px; height: 6px; background: rgba(229,184,45,0.25); border-radius: 50%; cursor: pointer; transition: all 0.2s; }
+.carr-dot.active { background: var(--gold); transform: scale(1.3); }
+.carr-counter { margin-left: auto; font-family: 'Cormorant Garamond', serif; font-size: 20px; color: rgba(229,184,45,0.4); }
+.hint { margin-top: 16px; font-size: 11px; color: rgba(213,200,175,0.3); letter-spacing: 1px; line-height: 1.7; }
+.hint code { color: rgba(229,184,45,0.45); }
+
+/* VÍDEOS */
+.videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.video-slot { background: var(--card-bg); border: 1px dashed rgba(229,184,45,0.18); position: relative; overflow: hidden; transition: all 0.3s; }
+.video-slot:hover { border-color: rgba(229,184,45,0.45); }
+.video-thumb { aspect-ratio: 16/9; background: var(--black); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.video-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s; }
+.video-slot.has-video .video-thumb img { opacity: 1; }
+.video-play { width: 56px; height: 56px; border-radius: 50%; background: rgba(229,184,45,0.9); display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; transition: all 0.2s; cursor: pointer; }
+.video-play:hover { background: var(--gold); transform: scale(1.08); }
+.video-play::after { content: ''; border-left: 18px solid var(--black); border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 4px; }
+.video-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+.video-info { padding: 20px 22px; border-top: 1px solid rgba(229,184,45,0.07); }
+.video-name { font-size: 14px; font-weight: 600; color: var(--cream); margin-bottom: 3px; }
+.video-role { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); opacity: 0.6; }
+.video-url-input { display: block; width: 100%; margin-top: 10px; background: rgba(229,184,45,0.04); border: 1px solid rgba(229,184,45,0.15); color: var(--cream-dark); font-size: 11px; padding: 8px 12px; font-family: 'Montserrat', sans-serif; outline: none; transition: border-color 0.2s; }
+.video-url-input::placeholder { color: rgba(213,200,175,0.3); }
+.video-url-input:focus { border-color: rgba(229,184,45,0.45); }
+.add-video-btn { margin-top: 8px; background: var(--red); border: none; color: var(--cream); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 9px 18px; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: background 0.2s; width: 100%; }
+.add-video-btn:hover { background: var(--red-light); }
+
+/* DEPOIMENTOS */
+.dep-sec { padding: 110px 0; }
+.dep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 2px; margin-top: 2px; }
+.dep-card { background: var(--card-bg); border: 1px solid rgba(229,184,45,0.07); padding: 40px 36px; position: relative; overflow: hidden; transition: all 0.3s; }
+.dep-card::before { content: '"'; position: absolute; top: -10px; left: 28px; font-family: 'Cormorant Garamond', serif; font-size: 120px; font-weight: 700; color: rgba(229,184,45,0.05); line-height: 1; pointer-events: none; }
+.dep-card:hover { background: rgba(157,30,43,0.08); border-color: rgba(229,184,45,0.15); }
+.dep-stars { display: flex; gap: 3px; margin-bottom: 20px; }
+.dep-star { color: var(--gold); font-size: 13px; }
+.dep-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; font-style: italic; line-height: 1.6; color: var(--cream); margin-bottom: 28px; }
+.dep-author { display: flex; align-items: center; gap: 14px; }
+.dep-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--red); border: 2px solid rgba(229,184,45,0.2); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--gold); flex-shrink: 0; overflow: hidden; }
+.dep-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.dep-name { font-size: 13px; font-weight: 600; color: var(--cream); margin-bottom: 2px; }
+.dep-role { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); opacity: 0.6; }
+
+/* INGRESSOS */
+.ing-sec { background: var(--red); padding: 110px 0; position: relative; overflow: hidden; }
+.ing-sec::before { content: '2026'; position: absolute; right: -30px; bottom: -40px; font-family: 'Cormorant Garamond', serif; font-size: 240px; font-weight: 700; color: rgba(0,0,0,0.12); pointer-events: none; line-height: 1; }
+.ing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 20px; margin-top: 64px; }
+.ing-card { background: rgba(0,0,0,0.28); border: 1px solid rgba(229,184,45,0.18); padding: 48px 36px 40px; position: relative; transition: all 0.3s; }
+.ing-card.featured { background: var(--black); border-color: var(--gold); }
+.ing-card.featured::before { content: 'MAIS POPULAR'; position: absolute; top: -1px; right: 28px; background: var(--gold); color: var(--black); font-size: 8px; font-weight: 800; letter-spacing: 2.5px; padding: 5px 14px; }
+.ing-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.5); }
+.ing-tipo { font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.ing-price { font-family: 'Cormorant Garamond', serif; font-size: 62px; font-weight: 700; color: var(--cream); line-height: 1; margin-bottom: 6px; }
+.ing-price sup { font-size: 26px; vertical-align: top; margin-top: 14px; display: inline-block; color: var(--gold); }
+.ing-desc { font-size: 12px; font-weight: 300; color: var(--cream-dark); opacity: 0.55; margin-bottom: 32px; line-height: 1.6; }
+.ing-feats { list-style: none; margin-bottom: 36px; }
+.ing-feats li { font-size: 13px; font-weight: 300; color: var(--cream-dark); padding: 9px 0; border-bottom: 1px solid rgba(229,184,45,0.07); display: flex; align-items: center; gap: 10px; }
+.ing-feats li::before { content: '✦'; color: var(--gold); font-size: 9px; flex-shrink: 0; }
+.btn-ing { width: 100%; background: transparent; border: 1px solid var(--gold); color: var(--gold); font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; padding: 16px; cursor: pointer; transition: all 0.25s; }
+.btn-ing:hover, .ing-card.featured .btn-ing { background: var(--gold); color: var(--black); }
+
+/* FOOTER */
+footer { background: var(--black); border-top: 1px solid rgba(229,184,45,0.12); padding: 72px 24px 48px; text-align: center; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 700; color: var(--gold); letter-spacing: -1px; margin-bottom: 6px; }
+.footer-tagline { font-size: 9px; letter-spacing: 5px; text-transform: uppercase; color: var(--cream-dark); opacity: 0.3; margin-bottom: 36px; }
+.footer-details { font-size: 12px; font-weight: 300; color: var(--cream-dark); opacity: 0.35; line-height: 2.2; }
+.footer-details a { color: var(--gold); opacity: 0.7; text-decoration: none; }
+.footer-details a:hover { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Sunrise</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#programacao">Programação</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#ingressos" class="nav-cta">Garantir vaga</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vline"></div>
+  <div class="hero-eyebrow">Sunrise School · São Paulo · 2026</div>
+  <div class="hero-name">
+    <span class="big">Sunrise</span>
+    <span class="sub">Experience</span>
+  </div>
+  <div class="hero-year-row"><span>2 · 0 · 2 · 6</span></div>
+  <div class="hero-date-block">
+    <div class="big-day">15</div>
+    <div class="detail">de Maio de 2026 &nbsp;·&nbsp; 08h às 15h15 &nbsp;·&nbsp; Sunrise School</div>
+  </div>
+  <p class="hero-desc">Uma imersão completa nas metodologias que estão transformando a educação. Venha viver um dia único dentro da Sunrise School.</p>
+  <div class="hero-actions">
+    <a href="#ingressos" class="btn-gold"><span>Garantir meu ingresso</span></a>
+    <span class="price-note">A partir de R$ 150 · Vagas limitadas</span>
+  </div>
+  <div class="scroll-cue">
+    <span>Explorar</span>
+    <div class="scroll-cue-line"></div>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<div id="sobre" class="sobre-sec">
+  <div class="wrap">
+    <div class="sobre-grid">
+      <div class="sobre-text">
+        <div class="sec-label">O Evento</div>
+        <h2 class="sec-title">Uma experiência que <em>transforma</em></h2>
+        <p>O <strong>Sunrise Experience</strong> é um dia de imersão real dentro da Sunrise School — um evento para pais, educadores, diretores e gestores que querem mais do que ouvir sobre inovação educacional.</p>
+        <p>Aqui você <strong>vive na prática</strong>: participa de aulas, vivencia atividades com os alunos, debate em rodas de conversa e entende como a educação pode ser diferente — agora.</p>
+        <p>Ao final, você sai com um <strong>certificado de 5 horas</strong> de desenvolvimento profissional e uma visão completamente renovada sobre o que é possível na educação.</p>
+      </div>
+      <div class="stats-stack">
+        <div class="stat-card"><div class="stat-num">5h+</div><div class="stat-label">De imersão completa</div></div>
+        <div class="stat-card"><div class="stat-num">4×</div><div class="stat-label">Edições realizadas</div></div>
+        <div class="stat-card"><div class="stat-num">100%</div><div class="stat-label">De satisfação em 2025</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMAÇÃO -->
+<div id="programacao" class="prog-sec">
+  <div class="wrap">
+    <div class="sec-label">Programação</div>
+    <h2 class="sec-title">O que vai <em>acontecer</em></h2>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-time">08h00</div><div class="tl-body"><h3>Recepção & Café de Boas-Vindas</h3><p>Chegada, credenciamento e primeiro contato com o ambiente Sunrise</p></div></div>
+      <div class="tl-item"><div class="tl-time">08h30</div><div class="tl-body"><h3>Tour pela Escola</h3><p>Conheça os espaços, a arquitetura pedagógica e a filosofia por trás de cada detalhe</p></div></div>
+      <div class="tl-item"><div class="tl-time">09h30</div><div class="tl-body"><h3>Vivência em Sala de Aula</h3><p>Participe de uma aula real junto com os alunos — metodologias ativas em ação</p></div></div>
+      <div class="tl-item"><div class="tl-time">11h00</div><div class="tl-body"><h3>Palestra & Painel de Educadores</h3><p>Conteúdo aprofundado com os professores e coordenadores da Sunrise</p></div></div>
+      <div class="tl-item"><div class="tl-time">12h30</div><div class="tl-body"><h3>Almoço & Networking</h3><p>Troca informal com outros participantes, educadores e gestores</p></div></div>
+      <div class="tl-item"><div class="tl-time">13h30</div><div class="tl-body"><h3>Atividades Hands-on com Alunos</h3><p>Mãos na massa: experimente projetos e dinâmicas com os alunos da escola</p></div></div>
+      <div class="tl-item"><div class="tl-time">14h30</div><div class="tl-body"><h3>Roda de Conversa & Encerramento</h3><p>Reflexões finais, perguntas e entrega da certificação de participação</p></div></div>
+      <div class="tl-item"><div class="tl-time">15h15</div><div class="tl-body"><h3>Encerramento Oficial</h3><p>Fim do evento — até a próxima edição!</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PARA QUEM -->
+<div class="publico-sec">
+  <div class="wrap">
+    <div class="sec-label">Para quem é</div>
+    <h2 class="sec-title">Este evento foi feito <em>para você</em></h2>
+    <div class="publico-grid">
+      <div class="pub-card"><span class="pub-icon">👨‍👩‍👧</span><h3>Pais</h3><p>Que querem entender como a educação do filho funciona na prática e participar ativamente dessa jornada</p></div>
+      <div class="pub-card"><span class="pub-icon">📚</span><h3>Educadores</h3><p>Que buscam referências reais, metodologias aplicáveis e uma nova visão sobre o que é ensinar</p></div>
+      <div class="pub-card"><span class="pub-icon">🏫</span><h3>Diretores</h3><p>Que querem transformar sua escola e precisam ver como uma instituição inovadora funciona por dentro</p></div>
+      <div class="pub-card"><span class="pub-icon">💡</span><h3>Gestores</h3><p>Que estão no processo de criação ou transformação de uma instituição e buscam inspiração concreta</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- GALERIA -->
+<div id="galeria" class="galeria-sec">
+  <div class="wrap">
+    <div class="sec-label">Galeria</div>
+    <h2 class="sec-title">Imagens do <em>evento</em></h2>
+    <div class="galeria-tabs">
+      <button class="gtab active" onclick="switchTab('fotos',this)">📷 &nbsp;Fotos</button>
+      <button class="gtab" onclick="switchTab('carrossel',this)">🖼 &nbsp;Carrossel</button>
+      <button class="gtab" onclick="switchTab('videos',this)">🎬 &nbsp;Vídeos de Depoimentos</button>
+    </div>
+
+    <!-- ABA FOTOS -->
+    <div class="gtab-panel active" id="panel-fotos">
+      <div class="foto-grid" id="fotoGrid"></div>
+      <p class="hint">↑ Para adicionar fotos reais, substitua as strings vazias no array <code>fotoSrcs</code> no JavaScript pelas URLs das suas imagens.</p>
+    </div>
+
+    <!-- ABA CARROSSEL -->
+    <div class="gtab-panel" id="panel-carrossel">
+      <div class="carr-wrap">
+        <div class="carr-track" id="carrTrack"></div>
+      </div>
+      <div class="carr-controls">
+        <button class="carr-btn" onclick="carrMove(-1)">&#8592;</button>
+        <button class="carr-btn" onclick="carrMove(1)">&#8594;</button>
+        <div class="carr-dots" id="carrDots"></div>
+        <div class="carr-counter" id="carrCounter">1 / 6</div>
+      </div>
+      <p class="hint">↑ Para adicionar fotos ao carrossel, edite o array <code>carrPhotos</code> no JavaScript com as URLs e legendas das suas imagens.</p>
+    </div>
+
+    <!-- ABA VÍDEOS -->
+    <div class="gtab-panel" id="panel-videos">
+      <div class="videos-grid" id="videosGrid"></div>
+      <p class="hint">↑ Cole a URL do vídeo (YouTube ou Vimeo) no campo de cada card e clique em "Adicionar vídeo" para carregar a thumbnail e ativar a reprodução.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DEPOIMENTOS TEXTO -->
+<div id="depoimentos" class="dep-sec">
+  <div class="wrap">
+    <div class="sec-label">Depoimentos</div>
+    <h2 class="sec-title">O que dizem quem <em>viveu</em></h2>
+    <div class="dep-grid">
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <div class="dep-text">"Foi transformador ver na prática como os alunos se engajam de verdade. Voltei para a minha escola com uma visão completamente diferente."</div>
+        <div class="dep-author"><div class="dep-avatar">A</div><div><div class="dep-name">Ana Paula S.</div><div class="dep-role">Diretora · Colégio [Nome]</div></div></div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <div class="dep-text">"Nunca tinha visto uma escola onde os alunos chegam com tanta vontade de aprender. Saí inspirado e cheio de ideias para aplicar."</div>
+        <div class="dep-author"><div class="dep-avatar">R</div><div><div class="dep-name">Ricardo M.</div><div class="dep-role">Educador · Ensino Fundamental</div></div></div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <div class="dep-text">"Como mãe, foi emocionante ver o quanto meu filho aprende aqui. O evento me fez entender profundamente a proposta da escola."</div>
+        <div class="dep-author"><div class="dep-avatar">C</div><div><div class="dep-name">Claudia T.</div><div class="dep-role">Mãe de aluno · 2º ano</div></div></div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <div class="dep-text">"O Sunrise Experience é obrigatório para qualquer gestor que quer entender o futuro da educação. Simplesmente incrível."</div>
+        <div class="dep-author"><div class="dep-avatar">F</div><div><div class="dep-name">Fernanda L.</div><div class="dep-role">Gestora Pedagógica</div></div></div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <div class="dep-text">"Vim cético e fui embora convicto. A metodologia funciona, e o mais impressionante é ver como as crianças são protagonistas do próprio aprendizado."</div>
+        <div class="dep-author"><div class="dep-avatar">M</div><div><div class="dep-name">Marcos D.</div><div class="dep-role">Pai de aluno · Fundador de escola</div></div></div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <div class="dep-text">"A roda de conversa com os educadores valeu cada centavo do ingresso. Profundidade, honestidade e muita troca real. Voltarei em 2026."</div>
+        <div class="dep-author"><div class="dep-avatar">J</div><div><div class="dep-name">Juliana K.</div><div class="dep-role">Coordenadora Pedagógica</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INGRESSOS -->
+<div id="ingressos" class="ing-sec">
+  <div class="wrap">
+    <div class="sec-label" style="color:rgba(229,184,45,0.7)">Ingressos</div>
+    <h2 class="sec-title" style="color:var(--cream)">Garanta <em>sua vaga</em></h2>
+    <p style="font-size:14px;font-weight:300;color:rgba(245,239,224,0.55);max-width:460px;line-height:1.85;margin-top:8px;">Vagas limitadas para garantir a qualidade da experiência. Não deixe para a última hora.</p>
+    <div class="ing-grid">
+      <div class="ing-card">
+        <div class="ing-tipo">Lote Antecipado</div>
+        <div class="ing-price"><sup>R$</sup>150</div>
+        <div class="ing-desc">Disponível até 30 de abril de 2026</div>
+        <ul class="ing-feats">
+          <li>Acesso completo ao evento</li>
+          <li>Certificado de participação</li>
+          <li>Café de boas-vindas</li>
+          <li>Material do participante</li>
+        </ul>
+        <button class="btn-ing">Comprar ingresso</button>
+      </div>
+      <div class="ing-card featured">
+        <div class="ing-tipo">Lote Padrão</div>
+        <div class="ing-price"><sup>R$</sup>250</div>
+        <div class="ing-desc">Preço regular do evento</div>
+        <ul class="ing-feats">
+          <li>Acesso completo ao evento</li>
+          <li>Certificado de participação</li>
+          <li>Café de boas-vindas</li>
+          <li>Material do participante</li>
+          <li>Almoço incluído</li>
+        </ul>
+        <button class="btn-ing">Comprar ingresso</button>
+      </div>
+      <div class="ing-card">
+        <div class="ing-tipo">Institucional</div>
+        <div class="ing-price"><sup>R$</sup>220</div>
+        <div class="ing-desc">Grupos de 3 ou mais da mesma instituição</div>
+        <ul class="ing-feats">
+          <li>Acesso completo ao evento</li>
+          <li>Certificado de participação</li>
+          <li>Café de boas-vindas</li>
+          <li>Material do participante</li>
+          <li>Almoço incluído</li>
+          <li>Desconto por grupo</li>
+        </ul>
+        <button class="btn-ing">Falar com a equipe</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sunrise</div>
+  <div class="footer-tagline">Experience 2026 · Sunrise School</div>
+  <div class="footer-details">
+    15 de Maio de 2026 &nbsp;·&nbsp; Das 8h às 15h15 &nbsp;·&nbsp; São Paulo<br>
+    Dúvidas? <a href="mailto:contato@sunriseschool.com.br">contato@sunriseschool.com.br</a><br><br>
+    © 2026 Sunrise School. Todos os direitos reservados.
+  </div>
+</footer>
+
+<script>
+// ── TABS ──
+function switchTab(name, btn) {
+  document.querySelectorAll('.gtab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.gtab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ══════════════════════════════════════════
+// 👉 FOTOS GRID — adicione as URLs aqui
+// ══════════════════════════════════════════
+const fotoSrcs = [
+  '',  // Foto destaque (maior)
+  '',  // Foto 2
+  '',  // Foto 3
+  '',  // Foto 4
+  '',  // Foto 5
+  '',  // Foto 6
+  '',  // Foto 7
+  '',  // Foto 8
+  '',  // Foto 9
+];
+const fotoLabels = ['Foto destaque','Foto 2','Foto 3','Foto 4','Foto 5','Foto 6','Foto 7','Foto 8','Foto 9'];
+const fotoGrid = document.getElementById('fotoGrid');
+fotoSrcs.forEach((src, i) => {
+  const slot = document.createElement('div');
+  slot.className = 'foto-slot' + (src ? ' has-img' : '');
+  slot.innerHTML = `
+    <img src="${src}" alt="Foto ${i+1} — Sunrise Experience 2025" loading="lazy">
+    <div class="foto-ph">
+      <div class="foto-ph-icon">📸</div>
+      <div class="foto-ph-text">${fotoLabels[i]}</div>
+    </div>
+    <div class="foto-num">0${i+1}</div>`;
+  fotoGrid.appendChild(slot);
+});
+
+// ══════════════════════════════════════════
+// 👉 CARROSSEL — adicione URLs e legendas aqui
+// ══════════════════════════════════════════
+const carrPhotos = [
+  { src: '', caption: 'Abertura do evento 2025' },
+  { src: '', caption: 'Vivência em sala de aula' },
+  { src: '', caption: 'Palestra com educadores' },
+  { src: '', caption: 'Atividades hands-on' },
+  { src: '', caption: 'Roda de conversa' },
+  { src: '', caption: 'Encerramento & certificação' },
+];
+let carrIdx = 0;
+const carrTrack = document.getElementById('carrTrack');
+const carrDotsEl = document.getElementById('carrDots');
+const carrCounter = document.getElementById('carrCounter');
+carrPhotos.forEach((p, i) => {
+  const slide = document.createElement('div');
+  slide.className = 'carr-slide' + (p.src ? ' has-img' : '');
+  slide.innerHTML = `
+    <img src="${p.src}" alt="${p.caption}" loading="lazy">
+    <div class="foto-ph">
+      <div class="foto-ph-icon">🖼</div>
+      <div class="foto-ph-text">${p.caption}</div>
+    </div>
+    <div class="carr-bg-num">${String(i+1).padStart(2,'0')}</div>`;
+  carrTrack.appendChild(slide);
+  const dot = document.createElement('div');
+  dot.className = 'carr-dot' + (i===0?' active':'');
+  dot.onclick = () => goToSlide(i);
+  carrDotsEl.appendChild(dot);
+});
+function updateCarr() {
+  carrTrack.style.transform = `translateX(-${carrIdx*100}%)`;
+  document.querySelectorAll('.carr-dot').forEach((d,i) => d.classList.toggle('active', i===carrIdx));
+  carrCounter.textContent = `${carrIdx+1} / ${carrPhotos.length}`;
+}
+function carrMove(dir) { carrIdx = (carrIdx+dir+carrPhotos.length)%carrPhotos.length; updateCarr(); }
+function goToSlide(i) { carrIdx=i; updateCarr(); }
+setInterval(() => carrMove(1), 5000);
+carrTrack.addEventListener('touchstart', e => { window._tx = e.touches[0].clientX; });
+carrTrack.addEventListener('touchend', e => { const d = window._tx - e.changedTouches[0].clientX; if(Math.abs(d)>40) carrMove(d>0?1:-1); });
+
+// ══════════════════════════════════════════
+// 👉 VÍDEOS — adicione nome, cargo e URL aqui
+// ══════════════════════════════════════════
+const videoDepoimentos = [
+  { name: 'Depoimento 01', role: 'Educador(a)', url: '' },
+  { name: 'Depoimento 02', role: 'Diretor(a)', url: '' },
+  { name: 'Depoimento 03', role: 'Pai / Mãe', url: '' },
+  { name: 'Depoimento 04', role: 'Gestor(a)', url: '' },
+  { name: 'Depoimento 05', role: 'Educador(a)', url: '' },
+  { name: 'Depoimento 06', role: 'Participante', url: '' },
+];
+const videosGrid = document.getElementById('videosGrid');
+videoDepoimentos.forEach((v, i) => {
+  const card = document.createElement('div');
+  card.className = 'video-slot';
+  card.id = `vs-${i}`;
+  card.innerHTML = `
+    <div class="video-thumb">
+      <img id="vt-${i}" src="" alt="">
+      <div class="video-ph" id="vph-${i}">
+        <div class="video-play" onclick="playVideo(${i})"></div>
+      </div>
+    </div>
+    <div class="video-info">
+      <div class="video-name">${v.name}</div>
+      <div class="video-role">${v.role}</div>
+      <input class="video-url-input" id="vu-${i}" type="text" placeholder="Cole a URL do vídeo (YouTube, Vimeo...)" value="${v.url}">
+      <button class="add-video-btn" id="vbtn-${i}" onclick="loadVideo(${i})">▶ Adicionar vídeo</button>
+    </div>`;
+  videosGrid.appendChild(card);
+  if (v.url) loadVideo(i);
+});
+
+function loadVideo(i) {
+  const url = document.getElementById(`vu-${i}`).value.trim();
+  if (!url) return;
+  const thumb = document.getElementById(`vt-${i}`);
+  const ph = document.getElementById(`vph-${i}`);
+  const btn = document.getElementById(`vbtn-${i}`);
+  const slot = document.getElementById(`vs-${i}`);
+  const ytMatch = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  if (ytMatch) {
+    const ytId = ytMatch[1];
+    thumb.src = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+    thumb.style.opacity = '1';
+    ph.style.background = 'rgba(0,0,0,0.4)';
+    slot.dataset.ytid = ytId;
+    slot.classList.add('has-video');
+    btn.textContent = '✓ Vídeo carregado';
+    btn.style.background = '#1e5c33';
+    return;
+  }
+  // Vimeo
+  const vmMatch = url.match(/vimeo\.com\/(\d+)/);
+  if (vmMatch) {
+    slot.dataset.vmid = vmMatch[1];
+    slot.classList.add('has-video');
+    btn.textContent = '✓ Vídeo Vimeo salvo';
+    btn.style.background = '#1e5c33';
+    return;
+  }
+  btn.textContent = '✓ Link salvo';
+  btn.style.background = '#1e5c33';
+}
+
+function playVideo(i) {
+  const slot = document.getElementById(`vs-${i}`);
+  const thumb = slot.querySelector('.video-thumb');
+  const ph = document.getElementById(`vph-${i}`);
+  const url = document.getElementById(`vu-${i}`).value.trim();
+  if (slot.dataset.ytid) {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${slot.dataset.ytid}?autoplay=1`;
+    iframe.allow = 'autoplay; fullscreen';
+    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;z-index:10;';
+    thumb.appendChild(iframe);
+    ph.style.display = 'none';
+  } else if (slot.dataset.vmid) {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://player.vimeo.com/video/${slot.dataset.vmid}?autoplay=1`;
+    iframe.allow = 'autoplay; fullscreen';
+    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;z-index:10;';
+    thumb.appendChild(iframe);
+    ph.style.display = 'none';
+  } else if (url) {
+    window.open(url, '_blank');
+  }
+}
+</script>
+</body>
+</html>

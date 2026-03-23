@@ -216,54 +216,54 @@ nav {
         </div>
       </div>
     </div>
-  //Fim do teste Clude1
-/* GALERIA */
-.galeria-sec { background: var(--off-black); padding: 110px 0; border-top: 1px solid rgba(229,184,45,0.08); }
-.galeria-tabs { display: flex; gap: 2px; margin-top: 48px; flex-wrap: wrap; }
-.gtab { background: rgba(229,184,45,0.05); border: 1px solid rgba(229,184,45,0.15); color: var(--cream-dark); font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 13px 28px; cursor: pointer; transition: all 0.2s; opacity: 0.6; }
-.gtab.active, .gtab:hover { background: var(--gold); color: var(--black); border-color: var(--gold); opacity: 1; }
-.gtab-panel { display: none; margin-top: 2px; animation: fadeSlide 0.4s ease; }
-.gtab-panel.active { display: block; }
-@keyframes fadeSlide { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+//Fim do teste Clude1
+//* GALERIA */
+/.galeria-sec { background: var(--off-black); padding: 110px 0; border-top: 1px solid rgba(229,184,45,0.08); }
+/.galeria-tabs { display: flex; gap: 2px; margin-top: 48px; flex-wrap: wrap; }
+/.gtab { background: rgba(229,184,45,0.05); border: 1px solid rgba(229,184,45,0.15); color: var(--cream-dark); font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 13px 28px; cursor: pointer; transition: all 0.2s; opacity: 0.6; }
+/.gtab.active, .gtab:hover { background: var(--gold); color: var(--black); border-color: var(--gold); opacity: 1; }
+/.gtab-panel { display: none; margin-top: 2px; animation: fadeSlide 0.4s ease; }
+/.gtab-panel.active { display: block; }
+/@keyframes fadeSlide { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 
 /* FOTOS GRID */
-.foto-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 220px;
-  gap: 3px;
-}
-@media (max-width: 900px) { .foto-grid { grid-template-columns: repeat(3,1fr); grid-auto-rows: 180px; } }
-@media (max-width: 600px) { .foto-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 150px; } }
-
-.foto-slot {
-  background: var(--card-bg);
-  border: 1px dashed rgba(229,184,45,0.2);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
-  position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s;
-}
-.foto-slot:hover { border-color: rgba(229,184,45,0.5); }
-.foto-slot:hover img { transform: scale(1.04); }
-
-/* Foto destaque — ocupa 2 colunas e 2 linhas */
-.foto-slot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-@media (max-width: 600px) { .foto-slot:nth-child(1) { grid-column: span 2; grid-row: span 1; } }
-
-.foto-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s, transform 0.4s; }
-.foto-slot.has-img img { opacity: 1; }
-.foto-slot.has-img .foto-ph { opacity: 0; }
-
-/* Overlay dourado no hover */
-.foto-slot::after { content: ''; position: absolute; inset: 0; background: rgba(229,184,45,0); transition: background 0.3s; pointer-events: none; }
-.foto-slot:hover::after { background: rgba(229,184,45,0.06); }
-
-.foto-ph { display: flex; flex-direction: column; align-items: center; gap: 8px; transition: opacity 0.3s; }
-.foto-ph-icon { font-size: 28px; opacity: 0.25; }
-.foto-ph-text { font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); opacity: 0.4; }
-.foto-num { position: absolute; bottom: 10px; right: 12px; font-family: 'Cormorant Garamond', serif; font-size: 20px; color: rgba(229,184,45,0.12); font-weight: 700; z-index: 1; }
-.hint { margin-top: 16px; font-size: 11px; color: rgba(213,200,175,0.3); letter-spacing: 1px; line-height: 1.7; }
-.hint code { color: rgba(229,184,45,0.45); }
-
+/.foto-grid {
+/  display: grid;
+/  grid-template-columns: repeat(4, 1fr);
+/  grid-auto-rows: 220px;
+/  gap: 3px;
+/}
+/@media (max-width: 900px) { .foto-grid { grid-template-columns: repeat(3,1fr); grid-auto-rows: 180px; } }
+/@media (max-width: 600px) { .foto-grid { grid-template-columns: repeat(2,1fr); grid-auto-rows: 150px; } }
+/
+/.foto-slot {
+/  background: var(--card-bg);
+/  border: 1px dashed rgba(229,184,45,0.2);
+/  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+/  position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s;
+/}
+/.foto-slot:hover { border-color: rgba(229,184,45,0.5); }
+/.foto-slot:hover img { transform: scale(1.04); }
+/
+//* Foto destaque — ocupa 2 colunas e 2 linhas */
+/.foto-slot:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+/@media (max-width: 600px) { .foto-slot:nth-child(1) { grid-column: span 2; grid-row: span 1; } }
+/
+/.foto-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s, transform 0.4s; }
+/.foto-slot.has-img img { opacity: 1; }
+/.foto-slot.has-img .foto-ph { opacity: 0; }
+/
+//* Overlay dourado no hover */
+/.foto-slot::after { content: ''; position: absolute; inset: 0; background: rgba(229,184,45,0); transition: background 0.3s; pointer-events: none; }
+/.foto-slot:hover::after { background: rgba(229,184,45,0.06); }
+/
+/.foto-ph { display: flex; flex-direction: column; align-items: center; gap: 8px; transition: opacity 0.3s; }
+/.foto-ph-icon { font-size: 28px; opacity: 0.25; }
+/.foto-ph-text { font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); opacity: 0.4; }
+/.foto-num { position: absolute; bottom: 10px; right: 12px; font-family: 'Cormorant Garamond', serif; font-size: 20px; color: rgba(229,184,45,0.12); font-weight: 700; z-index: 1; }
+/.hint { margin-top: 16px; font-size: 11px; color: rgba(213,200,175,0.3); letter-spacing: 1px; line-height: 1.7; }
+/.hint code { color: rgba(229,184,45,0.45); }
+/
 /* VÍDEOS */
 .videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
 .video-slot { background: var(--card-bg); border: 1px dashed rgba(229,184,45,0.18); position: relative; overflow: hidden; transition: all 0.3s; }

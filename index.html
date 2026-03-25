@@ -497,7 +497,7 @@ function loadVideo(i){
   const url=document.getElementById(`vu-${i}`).value.trim();
   if(!url)return;
   const thumb=document.getElementById(`vt-${i}`),btn=document.getElementById(`vbtn-${i}`),slot=document.getElementById(`vs-${i}`),ph=document.getElementById(`vph-${i}`);
-  const ytMatch=url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  const ytMatch=url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
   if(ytMatch){const ytId=ytMatch[1];thumb.src=`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;thumb.style.opacity='1';ph.style.background='rgba(0,0,0,0.4)';slot.dataset.ytid=ytId;slot.classList.add('has-video');btn.textContent='✓ Vídeo carregado';btn.style.background='#1e5c33';return;}
   const vmMatch=url.match(/vimeo\.com\/(\d+)/);
   if(vmMatch){slot.dataset.vmid=vmMatch[1];slot.classList.add('has-video');btn.textContent='✓ Vídeo Vimeo salvo';btn.style.background='#1e5c33';return;}

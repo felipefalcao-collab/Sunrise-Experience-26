@@ -485,6 +485,7 @@ function switchTab(name,btn){
     panel.style.display='block';
   }
   btn.classList.add('active');
+  if(name==='videos')initVideos();
 }
 const videoDepoimentos=[
   {name:'Depoimento 01',role:'Educador(a)',url:'https://youtube.com/shorts/M-9bbUScZj4'},
@@ -495,13 +496,23 @@ const videoDepoimentos=[
   {name:'Depoimento 06',role:'Participante',url:''},
 ];
 const videosGrid=document.getElementById('videosGrid');
-videoDepoimentos.forEach((v,i)=>{
-  const card=document.createElement('div');
-  card.className='video-slot';card.id=`vs-${i}`;
-  card.innerHTML=`<div class="video-thumb"><img id="vt-${i}" src="" alt=""><div class="video-ph" id="vph-${i}"><div class="video-play" onclick="playVideo(${i})"></div></div></div><div class="video-info"><div class="video-name">${v.name}</div><div class="video-role">${v.role}</div><input class="video-url-input" id="vu-${i}" type="text" placeholder="Cole a URL do vídeo (YouTube, Vimeo...)" value="${v.url}"><button class="add-video-btn" id="vbtn-${i}" onclick="loadVideo(${i})">▶ Adicionar vídeo</button></div>`;
-  videosGrid.appendChild(card);
-  if(v.url)loadVideo(i);
-});
+  if(!videosGrid||videosGrid.children.length>0)return;
+  const videoDepoimentos=[
+    {name:'Depoimento 01',role:'Educador(a)',url:'https://youtube.com/shorts/M-9bbUScZj4'},
+    {name:'Depoimento 02',role:'Diretor(a)',url:''},
+    {name:'Depoimento 03',role:'Pai / Mãe',url:''},
+    {name:'Depoimento 04',role:'Gestor(a)',url:''},
+    {name:'Depoimento 05',role:'Educador(a)',url:''},
+    {name:'Depoimento 06',role:'Participante',url:''},
+  ];
+  videoDepoimentos.forEach((v,i)=>{
+    const card=document.createElement('div');
+    card.className='video-slot';card.id=`vs-${i}`;
+    card.innerHTML=`<div class="video-thumb"><img id="vt-${i}" src="" alt=""><div class="video-ph" id="vph-${i}"><div class="video-play" onclick="playVideo(${i})"></div></div></div><div class="video-info"><div class="video-name">${v.name}</div><div class="video-role">${v.role}</div><input class="video-url-input" id="vu-${i}" type="text" placeholder="Cole a URL do vídeo (YouTube, Vimeo...)" value="${v.url}"><button class="add-video-btn" id="vbtn-${i}" onclick="loadVideo(${i})">▶ Adicionar vídeo</button></div>`;
+    videosGrid.appendChild(card);
+    if(v.url)loadVideo(i);
+  });
+}
 function loadVideo(i){
   const url=document.getElementById(`vu-${i}`).value.trim();
   if(!url)return;
@@ -515,4 +526,6 @@ function loadVideo(i){
 function playVideo(i){
   const slot=document.getElementById(`vs-${i}`),thumb=slot.querySelector('.video-thumb'),ph=document.getElementById(`vph-${i}`),url=document.getElementById(`vu-${i}`).value.trim();
   if(slot.dataset.ytid){const iframe=document.createElement('iframe');iframe.src=`https://www.youtube.com/embed/${slot.dataset.ytid}?autoplay=1`;iframe.allow='autoplay; fullscreen';iframe.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:none;z-index:10;';thumb.appendChild(iframe);ph.style.display='none';}
-  else if(slot.dataset.vmid){const iframe=document.createElement('iframe');iframe.src=`https://player.vimeo.com/video/${slot.dataset.vmid}?auto
+  else if(slot.dataset.vmid){const iframe=document.createElement('iframe');iframe.src=`https://player.vimeo.com/video/${slot.dataset.vmid}?autoplay=1`;iframe.allow='autoplay; fullscreen';iframe.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:none;z-index:10;';thumb.appendChild(iframe);ph.style.display='none';}
+  else if(url)window.open(url,'_blank');
+}

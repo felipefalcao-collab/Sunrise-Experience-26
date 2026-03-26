@@ -470,34 +470,20 @@ footer{background:var(--black);border-top:1px solid rgba(229,184,45,.12);padding
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
 function switchTab(name,btn){
-  document.querySelectorAll('.gtab-panel').forEach(function(p){
-    p.classList.remove('active');
-    p.style.display='none';
-  });
-  document.querySelectorAll('.gtab').forEach(function(b){
-    b.classList.remove('active');
-  });
+  document.querySelectorAll('.gtab-panel').forEach(function(p){p.classList.remove('active');p.style.display='none';});
+  document.querySelectorAll('.gtab').forEach(function(b){b.classList.remove('active');});
   var panel=document.getElementById('panel-'+name);
-  if(panel){
-    panel.classList.add('active');
-    panel.style.display='block';
-  }
+  if(panel){panel.classList.add('active');panel.style.display='block';}
   btn.classList.add('active');
   if(name==='videos')initVideos();
 }
-const videoDepoimentos=[
-  {name:'Depoimento 01',role:'Educador(a)',url:'https://youtube.com/shorts/M-9bbUScZj4'},
-  {name:'Depoimento 02',role:'Diretor(a)',url:''},
-  {name:'Depoimento 03',role:'Pai / Mãe',url:''},
-  {name:'Depoimento 04',role:'Gestor(a)',url:''},
-  {name:'Depoimento 05',role:'Educador(a)',url:''},
-  {name:'Depoimento 06',role:'Participante',url:''},
-];
-const videosGrid=document.getElementById('videosGrid');
+function initVideos(){
+  const videosGrid=document.getElementById('videosGrid');
   if(!videosGrid||videosGrid.children.length>0)return;
-  const videoDepoimentos=[
+  const deps=[
     {name:'Depoimento 01',role:'Educador(a)',url:'https://youtube.com/shorts/M-9bbUScZj4'},
     {name:'Depoimento 02',role:'Diretor(a)',url:''},
     {name:'Depoimento 03',role:'Pai / Mãe',url:''},
@@ -505,7 +491,7 @@ const videosGrid=document.getElementById('videosGrid');
     {name:'Depoimento 05',role:'Educador(a)',url:''},
     {name:'Depoimento 06',role:'Participante',url:''},
   ];
-  videoDepoimentos.forEach((v,i)=>{
+  deps.forEach((v,i)=>{
     const card=document.createElement('div');
     card.className='video-slot';card.id=`vs-${i}`;
     card.innerHTML=`<div class="video-thumb"><img id="vt-${i}" src="" alt=""><div class="video-ph" id="vph-${i}"><div class="video-play" onclick="playVideo(${i})"></div></div></div><div class="video-info"><div class="video-name">${v.name}</div><div class="video-role">${v.role}</div><input class="video-url-input" id="vu-${i}" type="text" placeholder="Cole a URL do vídeo (YouTube, Vimeo...)" value="${v.url}"><button class="add-video-btn" id="vbtn-${i}" onclick="loadVideo(${i})">▶ Adicionar vídeo</button></div>`;

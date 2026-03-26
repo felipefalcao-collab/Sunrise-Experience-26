@@ -476,7 +476,6 @@ function switchTab(name,btn){
   document.getElementById('panel-videos').style.display='none';
   document.querySelectorAll('.gtab').forEach(function(b){b.classList.remove('active');});
   if(name==='videos'){
-    initVideos();
     document.getElementById('panel-videos').style.display='block';
   } else {
     document.getElementById('panel-fotos').style.display='block';
@@ -516,6 +515,7 @@ function initVideos(){
     if(v.url)loadVideo(i);
   });
 }
+initVideos();
 function loadVideo(i){
   const url=document.getElementById(`vu-${i}`).value.trim();
   if(!url)return;

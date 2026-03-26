@@ -515,7 +515,7 @@ function initVideos(){
     if(v.url)loadVideo(i);
   });
 }
-initVideos();
+window.onload=function(){initVideos();};window.onload=function(){initVideos();};
 function loadVideo(i){
   const url=document.getElementById(`vu-${i}`).value.trim();
   if(!url)return;

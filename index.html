@@ -340,10 +340,10 @@ footer{background:var(--black);border-top:1px solid rgba(229,184,45,.12);padding
   <div class="wrap">
     <div class="sec-label">Galeria</div>
     <h2 class="sec-title">Imagens do <em>evento</em></h2>
-    <div class="galeria-tabs">
-      <button class="gtab active" onclick="switchTab('fotos',this)">📷 &nbsp;Fotos</button>
-      <button class="gtab" onclick="switchTab('videos',this)">🎬 &nbsp;Vídeos de Depoimentos</button>
-    </div>
+   <div class="galeria-tabs">
+  <button class="gtab active" onclick="document.getElementById('panel-fotos').style.display='block';document.getElementById('panel-videos').style.display='none';document.querySelectorAll('.gtab').forEach(function(b){b.classList.remove('active')});this.classList.add('active')">📷 &nbsp;Fotos</button>
+  <button class="gtab" onclick="document.getElementById('panel-fotos').style.display='none';document.getElementById('panel-videos').style.display='block';document.querySelectorAll('.gtab').forEach(function(b){b.classList.remove('active')});this.classList.add('active');initVideos()">🎬 &nbsp;Vídeos de Depoimentos</button>
+</div>
 
     <div class="gtab-panel active" id="panel-fotos">
       <div class="foto-grid">

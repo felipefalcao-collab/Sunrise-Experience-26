@@ -472,10 +472,17 @@ footer{background:var(--black);border-top:1px solid rgba(229,184,45,.12);padding
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function switchTab(name,btn){
-  document.querySelectorAll('.gtab-panel').forEach(function(p){
-    p.classList.remove('active');
-    p.style.display='none';
-  });
+  document.getElementById('panel-fotos').style.display='none';
+  document.getElementById('panel-videos').style.display='none';
+  document.querySelectorAll('.gtab').forEach(function(b){b.classList.remove('active');});
+  if(name==='videos'){
+    initVideos();
+    document.getElementById('panel-videos').style.display='block';
+  } else {
+    document.getElementById('panel-fotos').style.display='block';
+  }
+  btn.classList.add('active');
+});
   document.querySelectorAll('.gtab').forEach(function(b){
     b.classList.remove('active');
   });
@@ -486,6 +493,9 @@ function switchTab(name,btn){
   }
   btn.classList.add('active');
   if(name==='videos')initVideos();
+document.getElementById('panel-fotos').style.display='none';
+document.getElementById('panel-videos').style.display='none';
+if(panel){panel.style.display='block';}
 }
 function initVideos(){
   const videosGrid=document.getElementById('videosGrid');

@@ -115,8 +115,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
 .galeria-tabs{display:flex;gap:2px;margin-top:48px;flex-wrap:wrap}
 .gtab{background:rgba(229,184,45,.05);border:1px solid rgba(229,184,45,.15);color:var(--cream-dark);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:13px 28px;cursor:pointer;transition:all .2s;opacity:.6}
 .gtab.active,.gtab:hover{background:var(--gold);color:var(--black);border-color:var(--gold);opacity:1}
-.gtab-panel{display:none!important;margin-top:2px;animation:fadeSlide .4s ease}
-.gtab-panel.active{display:block!important}
+.gtab-panel{display:none;margin-top:2px;animation:fadeSlide .4s ease}
+.gtab-panel.active{display:block}
 @keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .foto-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
 .foto-slot{background:var(--card-bg);border:1px dashed rgba(229,184,45,.18);position:relative;overflow:hidden;cursor:pointer;transition:border-color .3s}
